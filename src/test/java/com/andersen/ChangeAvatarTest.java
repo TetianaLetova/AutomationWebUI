@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
@@ -34,19 +35,18 @@ public class ChangeAvatarTest {
 
         WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='file']")));
 
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].style.display='block'; arguments[0].style.visibility='visible'; arguments[0].style.opacity=1;",
-                fileInput
-        );
-
-//        String avatarPath = "C:\\\\Users\\\\06375\\\\Desktop\\\\f.jpg";
-//        fileInput.sendKeys(avatarPath);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement file = driver.findElement(By.xpath("//input[@type='file']"));
+        js.executeScript("arguments[0].style.display='block';", file);
+        String imagePath = new File("src/test/java/resources/f.jpg").getAbsolutePath();
+        fileInput.sendKeys(imagePath);
 
         wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//p[@class='mt-12' and text()='Your photo has been updated']")));
 
         driver.quit();
     }
+
     @AfterEach
     public void tearDown() {
         if (driver != null) {
