@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="CustomOrderSuite">
+    <listeners>
+        <listener class-name="com.andersen.priority.ReverseOrderInterceptor" />
+    </listeners>
+
+    <test name="MyTests">
+        <classes>
+            <class name="com.andersen.priority.Priority1" />
+        </classes>
+    </test>
+</suite>
