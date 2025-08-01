@@ -1,0 +1,8 @@
+<suite name="Parallel Test Suite" parallel="methods" thread-count="10">
+    <test name="All Parallel Tests">
+        <classes>
+            <class name="com.andersen.parallelismus.ParallelClass1"/>
+            <class name="com.andersen.parallelismus.ParallelClass2"/>
+        </classes>
+    </test>
+</suite>
