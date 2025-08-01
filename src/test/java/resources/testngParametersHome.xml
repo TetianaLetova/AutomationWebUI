@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="LoginWithParametersSuite">
+    <test name="LoginTest1">
+        <parameter name="email" value="tetianaletova@gmail.com"/>
+        <parameter name="password" value="adfdtcfjgkhl557#G"/>
+        <classes>
+            <class name="com.andersen.LoginTestParameters"/>
+        </classes>
+    </test>
+
+    <test name="LoginTest2">
+        <parameter name="email" value="0637582395z@gmail.com"/>
+        <parameter name="password" value="testtest"/>
+        <classes>
+            <class name="com.andersen.LoginTestParameters"/>
+        </classes>
+    </test>
+
+    <test name="LoginTest3">
+        <parameter name="email" value="email3@example.com"/>
+        <parameter name="password" value="Password123!"/>
+        <classes>
+            <class name="com.andersen.LoginTestParameters"/>
+        </classes>
+    </test>
+</suite>
