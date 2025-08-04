@@ -1,6 +1,5 @@
-package tests;
+package lecture17;
 
-import lecture17.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
