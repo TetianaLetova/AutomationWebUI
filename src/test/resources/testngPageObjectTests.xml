@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Lecture18HomeworkSuite">
+    <test name="LoginAndRegistrationTests">
+        <classes>
+            <class name="com.andersen.lecture18.tests.LoginAndRegistrationTests"/>
+        </classes>
+    </test>
+
+    <test name="ValidationTests">
+        <classes>
+            <class name="com.andersen.lecture18.tests.ValidationTests"/>
+        </classes>
+    </test>
+
+    <test name="FunctionalTests">
+        <classes>
+            <class name="com.andersen.lecture18.tests.FunctionalTests"/>
+        </classes>
+    </test>
+</suite>
