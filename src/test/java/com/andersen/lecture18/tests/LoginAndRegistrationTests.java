@@ -31,12 +31,12 @@ public class LoginAndRegistrationTests extends BaseTest {
     public void testLoginWithEmptyFields() {
         navigateToLogin();
 
-        loginPage.clickSignIn(); // Click without entering any data
+        loginPage.clickSignIn();
 
         Assert.assertTrue(loginPage.isEmailRequiredErrorDisplayed(),
-                "Error message 'Email is required' should be displayed");
+                "Error message 'Required' should be displayed");
         Assert.assertTrue(loginPage.isPasswordRequiredErrorDisplayed(),
-                "Error message 'Password is required' should be displayed");
+                "Error message 'Required' should be displayed");
     }
 
     @Test(description = "TC04: Verify login with invalid email format")
@@ -91,7 +91,7 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Test",
                 "User",
                 "01/01/1995",
-                "testuser@mail.com", // Already existing email
+                "testuser@mail.com",
                 "Pass123!",
                 "Pass123!"
         );
@@ -123,7 +123,6 @@ public class LoginAndRegistrationTests extends BaseTest {
     public void testRegistrationWithEmptyMandatoryFields() {
         navigateToRegistration();
 
-        // Fill all fields except First Name
         registrationPage.enterLastName("Smith");
         registrationPage.enterDateOfBirth("01/01/1995");
         registrationPage.enterEmail("test@mail.com");
@@ -143,7 +142,7 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Test",
                 "User",
                 "01/01/1995",
-                "abc123", // Invalid email format
+                "abc123",
                 "Pass123!",
                 "Pass123!"
         );

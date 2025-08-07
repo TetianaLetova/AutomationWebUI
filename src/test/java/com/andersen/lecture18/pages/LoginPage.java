@@ -23,10 +23,10 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Invalid email or password')]")
     private WebElement invalidCredentialsError;
 
-    @FindBy(xpath = "//div[contains(text(),'Email is required')]")
+    @FindBy(xpath = "//span[contains(text(),'Required')]")
     private WebElement emailRequiredError;
 
-    @FindBy(xpath = "//div[contains(text(),'Password is required')]")
+    @FindBy(xpath = "//span[contains(text(),'Required')]")
     private WebElement passwordRequiredError;
 
     @FindBy(xpath = "//div[contains(text(),'Invalid email format')]")
