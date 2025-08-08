@@ -13,7 +13,7 @@ public class ValidationTests extends BaseTest {
         registrationPage.fillRegistrationForm(
                 "Test",
                 "User",
-                "01/01/3000", // Invalid date
+                "01/01/3000",
                 "test" + System.currentTimeMillis() + "@mail.com",
                 "Pass123!",
                 "Pass123!"
@@ -36,7 +36,7 @@ public class ValidationTests extends BaseTest {
                 "User",
                 "01/01/1995",
                 "test" + System.currentTimeMillis() + "@mail.com",
-                "123", // Too short password
+                "123",
                 "123"
         );
         registrationPage.clickSubmit();
