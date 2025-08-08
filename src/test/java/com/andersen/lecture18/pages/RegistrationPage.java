@@ -1,10 +1,13 @@
 package com.andersen.lecture18.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class RegistrationPage extends BasePage {
 
@@ -23,7 +26,7 @@ public class RegistrationPage extends BasePage {
     @FindBy(name = "password")
     private WebElement passwordField;
 
-    @FindBy(name = "confirmPassword")
+    @FindBy(name = "passwordConfirmation")
     private WebElement confirmPasswordField;
 
     @FindBy(css = "button[type='submit']")
@@ -31,6 +34,9 @@ public class RegistrationPage extends BasePage {
 
     @FindBy(linkText = "Sign In")
     private WebElement signInLink;
+
+    @FindBy(xpath = "//a[contains(text(), 'Sign In')]")
+    private WebElement alternativeSignInLink;
 
     @FindBy(xpath = "//div[contains(text(),'Email already exists')]")
     private WebElement emailExistsError;
@@ -71,9 +77,38 @@ public class RegistrationPage extends BasePage {
         lastNameField.sendKeys(lastName);
     }
 
+    private String monthName(int monthNumber) {
+        String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        return months[monthNumber - 1];
+    }
+
     public void enterDateOfBirth(String dateOfBirth) {
-        dateOfBirthField.clear();
-        dateOfBirthField.sendKeys(dateOfBirth);
+        try {
+            dateOfBirthField.click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".react-datepicker__month-container")));
+            List<WebElement> selects = driver.findElements(By.cssSelector(".react-datepicker__month-container select[data-sharklabel='birthday']"));
+            String[] parts = dateOfBirth.split("/");
+            String day = String.valueOf(Integer.parseInt(parts[0]));
+            String month = monthName(Integer.parseInt(parts[1]));
+            String year = parts[2];
+            if (selects.size() >= 2) {
+                Select yearSelect = new Select(selects.get(0));
+                Select monthSelect = new Select(selects.get(1));
+                yearSelect.selectByValue(year);
+                monthSelect.selectByVisibleText(month);
+                By dayLocator = By.xpath("//div[contains(@class,'react-datepicker__day') and normalize-space(text())='" + day + "' and not(contains(@class,'react-datepicker__day--outside-month'))]");
+                wait.until(ExpectedConditions.elementToBeClickable(dayLocator)).click();
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".react-datepicker__month-container")));
+                return;
+            }
+        } catch (Exception ignored) {
+        }
+        try {
+            dateOfBirthField.clear();
+            dateOfBirthField.sendKeys(dateOfBirth);
+            dateOfBirthField.sendKeys(Keys.TAB);
+        } catch (Exception ignored) {
+        }
     }
 
     public void enterEmail(String email) {
@@ -92,11 +127,23 @@ public class RegistrationPage extends BasePage {
     }
 
     public void clickSubmit() {
-        submitButton.click();
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".react-datepicker__month-container")));
+        } catch (Exception ignored) {
+        }
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
+        }
     }
 
     public void clickSignInLink() {
-        signInLink.click();
+        try {
+            signInLink.click();
+        } catch (Exception e) {
+            alternativeSignInLink.click();
+        }
     }
 
     public void fillRegistrationForm(String firstName, String lastName, String dateOfBirth,
@@ -119,11 +166,18 @@ public class RegistrationPage extends BasePage {
 
     public boolean isPasswordMismatchErrorDisplayed() {
         try {
-            return wait.until(ExpectedConditions.visibilityOf(passwordMismatchError)).isDisplayed();
-        } catch (Exception e) {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//span[contains(text(), 'Passwords must match')]")
+            ));
+            return error.isDisplayed();
+        } catch (TimeoutException e) {
             return false;
         }
     }
+
+
+
 
     public boolean isFirstNameRequiredErrorDisplayed() {
         try {
@@ -175,13 +229,16 @@ public class RegistrationPage extends BasePage {
 
     public boolean areAllElementsVisible() {
         try {
-            return firstNameField.isDisplayed() &&
-                    lastNameField.isDisplayed() &&
-                    dateOfBirthField.isDisplayed() &&
-                    emailField.isDisplayed() &&
-                    passwordField.isDisplayed() &&
-                    confirmPasswordField.isDisplayed() &&
-                    submitButton.isDisplayed();
+            wait.until(ExpectedConditions.visibilityOf(firstNameField));
+            boolean firstNameVisible = firstNameField.isDisplayed();
+            boolean lastNameVisible = lastNameField.isDisplayed();
+            boolean dateVisible = dateOfBirthField.isDisplayed();
+            boolean emailVisible = emailField.isDisplayed();
+            boolean passwordVisible = passwordField.isDisplayed();
+            boolean confirmPasswordVisible = confirmPasswordField.isDisplayed();
+            boolean submitVisible = submitButton.isDisplayed();
+            return firstNameVisible && lastNameVisible && dateVisible &&
+                    emailVisible && passwordVisible && confirmPasswordVisible && submitVisible;
         } catch (Exception e) {
             return false;
         }

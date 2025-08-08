@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     @FindBy(linkText = "Registration")
     private WebElement registrationLink;
 
-    @FindBy(xpath = "//div[contains(text(),'Invalid email or password')]")
+    @FindBy(xpath = "//span[contains(text(),'Email or password is not valid')]")
     private WebElement invalidCredentialsError;
 
     @FindBy(xpath = "//span[contains(text(),'Required')]")
@@ -29,7 +29,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'Required')]")
     private WebElement passwordRequiredError;
 
-    @FindBy(xpath = "//div[contains(text(),'Invalid email format')]")
+    @FindBy(xpath = "//span[contains(text(),'Invalid email address')]")
     private WebElement invalidEmailFormatError;
 
     public LoginPage(WebDriver driver, WebDriverWait wait) {

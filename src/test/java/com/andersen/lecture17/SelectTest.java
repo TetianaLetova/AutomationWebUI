@@ -44,9 +44,9 @@ public class SelectTest extends BaseTest {
                 ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='date'][title='End date']")));
 
         startDate.clear();
-        startDate.sendKeys("04-08-2025");
+        startDate.sendKeys("11-08-2025");
         endDate.clear();
-        endDate.sendKeys("18-08-2025");
+        endDate.sendKeys("25-08-2025");
 
         endDate.sendKeys(Keys.TAB);
 

@@ -24,7 +24,7 @@ public class LoginAndRegistrationTests extends BaseTest {
         loginPage.login("testuser@mail.com", "wrongPass");
 
         Assert.assertTrue(loginPage.isInvalidCredentialsErrorDisplayed(),
-                "Error message 'Invalid email or password' should be displayed");
+                "Error message 'Email or password is not valid");
     }
 
     @Test(description = "TC03: Verify login with empty fields")
@@ -46,7 +46,7 @@ public class LoginAndRegistrationTests extends BaseTest {
         loginPage.login("abc123", "Pass123!");
 
         Assert.assertTrue(loginPage.isInvalidEmailFormatErrorDisplayed(),
-                "Error message 'Invalid email format' should be displayed");
+                "Error message 'Invalid email address' should be displayed");
     }
 
     @Test(description = "TC05: Verify navigation to Registration page")
@@ -91,7 +91,7 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Test",
                 "User",
                 "01/01/1995",
-                "testuser@mail.com",
+                "tetianaletova@gmail.com",
                 "Pass123!",
                 "Pass123!"
         );
@@ -113,10 +113,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Pass123!",
                 "Different123"
         );
-        registrationPage.clickSubmit();
 
-        Assert.assertTrue(registrationPage.isPasswordMismatchErrorDisplayed(),
-                "Error message 'Passwords do not match' should be displayed");
+        boolean isErrorDisplayed = registrationPage.isPasswordMismatchErrorDisplayed();
+        Assert.assertTrue(isErrorDisplayed, "Error message 'Passwords must match' should be displayed");
     }
 
     @Test(description = "TC09: Verify registration with empty mandatory fields")
