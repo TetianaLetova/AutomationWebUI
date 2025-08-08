@@ -56,7 +56,7 @@ public class RegistrationPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Date of Birth is required')]")
     private WebElement dateRequiredError;
 
-    @FindBy(xpath  = "//span[contains(text(),'Minimum 8 characters')]")
+    @FindBy(xpath = "//span[contains(text(),'Minimum 8 characters')]")
     private WebElement passwordLengthError;
 
     @FindBy(xpath = "//div[contains(text(),'Registration successful')]")
@@ -78,7 +78,7 @@ public class RegistrationPage extends BasePage {
     }
 
     private String monthName(int monthNumber) {
-        String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         return months[monthNumber - 1];
     }
 
@@ -127,15 +127,7 @@ public class RegistrationPage extends BasePage {
     }
 
     public void clickSubmit() {
-        try {
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".react-datepicker__month-container")));
-        } catch (Exception ignored) {
-        }
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
-        } catch (Exception e) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
-        }
+        submitButton.click();
     }
 
     public void clickSignInLink() {
@@ -175,9 +167,6 @@ public class RegistrationPage extends BasePage {
             return false;
         }
     }
-
-
-
 
     public boolean isFirstNameRequiredErrorDisplayed() {
         try {

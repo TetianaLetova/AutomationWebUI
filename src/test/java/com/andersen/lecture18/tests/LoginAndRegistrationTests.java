@@ -1,14 +1,8 @@
 package com.andersen.lecture18.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.time.Duration;
 
 public class LoginAndRegistrationTests extends BaseTest {
 
@@ -76,17 +70,14 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Anna",
                 "Smith",
                 "01/01/1995",
-                "anna" + System.currentTimeMillis() + "@mail.com", // Unique email
+                "anna" + System.currentTimeMillis() + "@mail.com",
                 "Pass123!",
                 "Pass123!"
         );
         registrationPage.clickSubmit();
 
-        Assert.assertTrue(
-                registrationPage.isSuccessMessageDisplayed() ||
-                        wait.until(ExpectedConditions.urlContains("/login")).booleanValue(),
-                "Registration should be successful with redirect to Sign In or success message"
-        );
+        Assert.assertTrue(dashboardPage.isDashboardLoaded(),
+                "User should be logged in and redirected to dashboard");
     }
 
     @Test(description = "TC07: Verify registration attempt with already registered email does not proceed")
@@ -105,7 +96,7 @@ public class LoginAndRegistrationTests extends BaseTest {
         );
         registrationPage.clickSubmit();
 
-        Assert.assertTrue(driver.getCurrentUrl().contains("/register"),
+        Assert.assertTrue(driver.getCurrentUrl().contains("/registration"),
                 "User should remain on the registration page");
     }
 
