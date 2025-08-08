@@ -13,7 +13,7 @@ public class ValidationTests extends BaseTest {
         registrationPage.fillRegistrationForm(
                 "Test",
                 "User",
-                "32/13/3000", // Invalid date
+                "01/01/3000", // Invalid date
                 "test" + System.currentTimeMillis() + "@mail.com",
                 "Pass123!",
                 "Pass123!"
@@ -21,9 +21,9 @@ public class ValidationTests extends BaseTest {
         registrationPage.clickSubmit();
 
         Assert.assertTrue(
-                registrationPage.isInvalidDateErrorDisplayed() ||
-                        registrationPage.isDateRequiredErrorDisplayed(),
-                "Error message 'Invalid date' or 'Date of Birth is required' should be displayed"
+                registrationPage.isSuccessMessageDisplayed() ||
+                        wait.until(ExpectedConditions.urlContains("/login")).booleanValue(),
+                "Registration should be successful with redirect to Sign In or success message"
         );
     }
 

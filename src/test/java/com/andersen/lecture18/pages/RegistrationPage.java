@@ -32,10 +32,10 @@ public class RegistrationPage extends BasePage {
     @FindBy(css = "button[type='submit']")
     private WebElement submitButton;
 
-    @FindBy(linkText = "Sign In")
+    @FindBy(xpath = "//span[contains(text(),'Sing in')]")
     private WebElement signInLink;
 
-    @FindBy(xpath = "//a[contains(text(), 'Sign In')]")
+    @FindBy(xpath = "//span[contains(text(),'Sing in')]")
     private WebElement alternativeSignInLink;
 
     @FindBy(xpath = "//div[contains(text(),'Email already exists')]")
@@ -44,10 +44,10 @@ public class RegistrationPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Passwords do not match')]")
     private WebElement passwordMismatchError;
 
-    @FindBy(xpath = "//div[contains(text(),'First Name is required')]")
+    @FindBy(xpath = "//span[contains(text(),'Required')]")
     private WebElement firstNameRequiredError;
 
-    @FindBy(xpath = "//div[contains(text(),'Invalid email format')]")
+    @FindBy(xpath = "//span[contains(text(),'Invalid email address')]")
     private WebElement invalidEmailFormatError;
 
     @FindBy(xpath = "//div[contains(text(),'Invalid date')]")
@@ -56,7 +56,7 @@ public class RegistrationPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Date of Birth is required')]")
     private WebElement dateRequiredError;
 
-    @FindBy(xpath = "//div[contains(text(),'Password must be at least 6 characters')]")
+    @FindBy(xpath  = "//span[contains(text(),'Minimum 8 characters')]")
     private WebElement passwordLengthError;
 
     @FindBy(xpath = "//div[contains(text(),'Registration successful')]")
