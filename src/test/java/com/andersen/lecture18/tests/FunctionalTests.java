@@ -1,18 +1,26 @@
 package com.andersen.lecture18.tests;
 
+import com.andersen.lecture18.pages.LoginPage;
+import io.qameta.allure.Feature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FunctionalTests extends BaseTest {
 
+    private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
+
+    @Feature("Iframes Test")
     @Test(description = "Actions, Alerts & Iframes Test - Refactored with POM")
     public void testActionsAlertsIframes() {
         loginAsValidUser();
-
+        logger.info("User successfully log in");
         dashboardPage.clickExpandIcon();
+        logger.info("Clicked on icon");
         dashboardPage.clickActionsAlertsIframes();
-
+        logger.info("Choose an option");
         wait.until(ExpectedConditions.urlContains("/actions"));
 
         try {
