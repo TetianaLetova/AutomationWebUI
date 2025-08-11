@@ -1,0 +1,23 @@
+<suite name="GroupingSuite">
+    <test name="FirstGroup">
+        <groups>
+            <run>
+                <include name="first"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.andersen.lecture16.Groups"/>
+        </classes>
+    </test>
+
+    <test name="SecondGroup">
+        <groups>
+            <run>
+                <include name="second"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.andersen.lecture16.Groups"/>
+        </classes>
+    </test>
+</suite>

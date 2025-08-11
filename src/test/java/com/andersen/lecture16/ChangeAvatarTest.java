@@ -1,4 +1,4 @@
-package com.andersen;
+package com.andersen.lecture16;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

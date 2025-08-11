@@ -1,4 +1,4 @@
-package com.andersen;
+package com.andersen.lecture16;
 
 import org.openqa.selenium.WebElement;
 

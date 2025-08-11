@@ -1,4 +1,4 @@
-package com.andersen;
+package com.andersen.lecture16;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
