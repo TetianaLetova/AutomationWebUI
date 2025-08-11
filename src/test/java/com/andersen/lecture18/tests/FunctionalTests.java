@@ -1,22 +1,20 @@
 package com.andersen.lecture18.tests;
 
-import com.andersen.lecture18.pages.LoginPage;
-import io.qameta.allure.Feature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.qameta.allure.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Epic("Functional Tests")
 public class FunctionalTests extends BaseTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginPage.class);
-
     @Feature("Iframes Test")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify the behavior of actions, alerts and iframes in the web app")
     @Test(description = "Actions, Alerts & Iframes Test - Refactored with POM")
     public void testActionsAlertsIframes() {
         loginAsValidUser();
-        logger.info("User successfully log in");
+        
         dashboardPage.clickExpandIcon();
         logger.info("Clicked on icon");
         dashboardPage.clickActionsAlertsIframes();
@@ -45,6 +43,9 @@ public class FunctionalTests extends BaseTest {
                 "Success message should contain the entered reason 'Test'");
     }
 
+    @Feature("Drag and Drop")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify drag and drop functionality")
     @Test(description = "Drag and Drop Test - Refactored with POM")
     public void testDragAndDrop() {
         loginAsValidUser();
@@ -60,6 +61,9 @@ public class FunctionalTests extends BaseTest {
                 "Success message 'Congratulations! Let's test for the best!' should be displayed");
     }
 
+    @Feature("Select Dropdowns")
+    @Severity(SeverityLevel.MINOR)
+    @Description("Verify dropdown selection functionality")
     @Test(description = "Select Dropdowns Test - Refactored with POM")
     public void testSelectDropdowns() {
         loginAsValidUser();

@@ -1,11 +1,17 @@
 package com.andersen.lecture18.tests;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("Authentication")
+@Feature("Login and Registration")
 public class LoginAndRegistrationTests extends BaseTest {
 
+    @Story("Login with valid credentials")
+    @Description("Verify that user can login successfully with valid email and password")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(description = "TC01: Verify login with valid credentials")
     public void testLoginWithValidCredentials() {
         navigateToLogin();
@@ -17,6 +23,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "User should be logged in and redirected to dashboard");
     }
 
+    @Story("Login with invalid credentials")
+    @Description("Verify error is shown when login with invalid password")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "TC02: Verify login with invalid password")
     public void testLoginWithInvalidPassword() {
         navigateToLogin();
@@ -27,6 +36,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Error message 'Email or password is not valid");
     }
 
+    @Story("Login form validation")
+    @Description("Verify error messages when login fields are empty")
+    @Severity(SeverityLevel.NORMAL)
     @Test(description = "TC03: Verify login with empty fields")
     public void testLoginWithEmptyFields() {
         navigateToLogin();
@@ -39,6 +51,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Error message 'Required' should be displayed");
     }
 
+    @Story("Login form validation")
+    @Description("Verify error message when login with invalid email format")
+    @Severity(SeverityLevel.NORMAL)
     @Test(description = "TC04: Verify login with invalid email format")
     public void testLoginWithInvalidEmailFormat() {
         navigateToLogin();
@@ -49,6 +64,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Error message 'Invalid email address' should be displayed");
     }
 
+    @Story("Navigation flow")
+    @Description("Verify navigation from Login to Registration page")
+    @Severity(SeverityLevel.MINOR)
     @Test(description = "TC05: Verify navigation to Registration page")
     public void testNavigationToRegistrationPage() {
         navigateToLogin();
@@ -62,6 +80,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Registration page elements should be visible");
     }
 
+    @Story("Registration with valid data")
+    @Description("Verify user can register with valid data")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(description = "TC06: Verify registration with valid data")
     public void testRegistrationWithValidData() {
         navigateToRegistration();
@@ -80,6 +101,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "User should be logged in and redirected to dashboard");
     }
 
+    @Story("Registration with existing email")
+    @Description("Verify registration is blocked if email is already registered")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "TC07: Verify registration attempt with already registered email does not proceed")
     public void testRegistrationWithExistingEmail() {
         navigateToRegistration();
@@ -100,6 +124,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "User should remain on the registration page");
     }
 
+    @Story("Registration password validation")
+    @Description("Verify error message when password and confirm password do not match")
+    @Severity(SeverityLevel.NORMAL)
     @Test(description = "TC08: Verify registration with password mismatch")
     public void testRegistrationWithPasswordMismatch() {
         navigateToRegistration();
@@ -119,7 +146,9 @@ public class LoginAndRegistrationTests extends BaseTest {
         Assert.assertTrue(isErrorDisplayed, "Error message 'Passwords must match' should be displayed");
     }
 
-
+    @Story("Registration form validation")
+    @Description("Verify error message when mandatory fields are empty")
+    @Severity(SeverityLevel.NORMAL)
     @Test(description = "TC09: Verify registration with empty mandatory fields")
     public void testRegistrationWithEmptyMandatoryFields() {
         navigateToRegistration();
@@ -136,6 +165,9 @@ public class LoginAndRegistrationTests extends BaseTest {
                 "Error message 'First Name is required' should be displayed");
     }
 
+    @Story("Registration form validation")
+    @Description("Verify error message when email format is invalid")
+    @Severity(SeverityLevel.NORMAL)
     @Test(description = "TC10: Verify registration with invalid email format")
     public void testRegistrationWithInvalidEmailFormat() {
         navigateToRegistration();
