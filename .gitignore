@@ -1,6 +1,6 @@
 /target/
 .allure
-allure-results
+target/allure-results
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

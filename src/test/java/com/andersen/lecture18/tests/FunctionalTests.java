@@ -103,8 +103,8 @@ public class FunctionalTests extends BaseTest {
         selectPage.selectCountry("USA");
         selectPage.selectLanguage("English");
         selectPage.selectType("Testing");
-        selectPage.setStartDate("11-08-2025");
-        selectPage.setEndDate("25-08-2025");
+        selectPage.setStartDate("18-08-2025");
+        selectPage.setEndDate("01-09-2025");
         selectPage.selectMultipleCourses("AQA Java", "AQA Python");
         selectPage.clickSearchButton();
         logger.info("Filled select dropdowns and clicked search");

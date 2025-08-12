@@ -2,7 +2,9 @@ package com.andersen.lecture18.tests;
 
 import com.andersen.lecture18.pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
+@Listeners({AllureTestNg.class})
 public class BaseTest {
 
     protected WebDriver driver;
