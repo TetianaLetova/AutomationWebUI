@@ -2,8 +2,6 @@ package com.andersen.lecture18.tests;
 
 import io.qameta.allure.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,14 +9,11 @@ import org.testng.annotations.Test;
 @Feature("Login and Registration")
 public class LoginAndRegistrationTests extends BaseTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginAndRegistrationTests.class);
-
     @Story("Login with valid credentials")
     @Description("Verify that user can login successfully with valid email and password")
     @Severity(SeverityLevel.BLOCKER)
     @Test(description = "TC01: Verify login with valid credentials")
     public void testLoginWithValidCredentials() {
-        logger.info("Navigating to Login page");
         navigateToLogin();
 
         logger.info("Logging in with valid credentials");
