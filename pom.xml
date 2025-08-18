@@ -89,6 +89,13 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Appium -->
+    <dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>10.0.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>
