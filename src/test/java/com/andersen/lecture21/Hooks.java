@@ -8,6 +8,7 @@ import io.cucumber.java.Before;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class Hooks {
 
@@ -19,11 +20,10 @@ public class Hooks {
                 .setPlatformName("Android")
                 .setAutomationName("UiAutomator2")
                 .setDeviceName("emulator-5554")
-                .setAppPackage("io.appium.android.apis")
-                .setAppActivity(".ApiDemos")
-                .noReset();
+                .noReset()
+                .setNewCommandTimeout(Duration.ofMinutes(10));;
 
-        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), options);
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
     }
 
     @After

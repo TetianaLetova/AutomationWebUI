@@ -20,20 +20,20 @@ public class MobileTestDef {
 
     @Given("the ApiDemos application is opened")
     public void theApiDemosApplicationIsOpened() {
-        WebElement title = driver.findElement(By.xpath("//android.widget.TextView[@text='API Demos']"));
+        WebElement title = driver.findElement(By.id("android:id/action_bar"));
         Assert.assertTrue(title.isDisplayed(), "ApiDemos app did not open");
-    }
-
-    @When("I navigate to {string}")
-    public void iNavigateTo(String menuItem) {
-        driver.findElement(By.xpath("//android.widget.TextView[@text='" + menuItem + "']")).click();
     }
 
     @Then("I should see {int} navigation buttons on the screen")
     public void iShouldSeeNavigationButtonsOnTheScreen(int expectedCount) {
-        List<WebElement> buttons = driver.findElements(By.className("android.widget.TextView"));
+        List<WebElement> buttons = driver.findElements(By.id("android:id/list"));
         long displayedCount = buttons.stream().filter(WebElement::isDisplayed).count();
         Assert.assertEquals(displayedCount, expectedCount, "Unexpected number of navigation buttons");
+    }
+
+    @When("I navigate to {string}")
+    public void iNavigateTo(String menuItem) {
+        driver.findElement(By.xpath(String.format("//android.widget.TextView[@content-desc=\"%s\"]", menuItem))).click();
     }
 
     @And("I set the date to tomorrow")

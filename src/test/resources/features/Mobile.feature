@@ -7,11 +7,9 @@ Feature: ApiDemos application UI tests
     Given the ApiDemos application is opened
 
   Scenario: Verify number of elements in Views screen
-    When I navigate to "Views"
     Then I should see 42 navigation buttons on the screen
 
   Scenario: Set date and time in Data Widgets dialog
-    When I navigate to "Views"
     And I navigate to "Data Widgets"
     And I navigate to "1. Dialog"
     And I set the date to tomorrow
