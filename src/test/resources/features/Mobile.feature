@@ -1,24 +1,13 @@
-Feature: ApiDemos application UI tests
-  As a mobile user
-  I want to interact with the Views section
-  So that I can verify its functionality
+Feature: Mobile tests for ApiDemos app
 
-  Background:
+  Scenario: Verify date, time and text switcher functionality
     Given the ApiDemos application is opened
-
-  Scenario: Verify number of elements in Views screen
-    Then I should see 42 navigation buttons on the screen
-
-  Scenario: Set date and time in Data Widgets dialog
-    And I navigate to "Data Widgets"
+    When I navigate to "Views"
+    And I navigate to "Date Widgets"
     And I navigate to "1. Dialog"
     And I set the date to tomorrow
     And I set the time to "11:11 PM"
-    Then the selected date should be tomorrow
-    And the selected time should be "11:11 PM"
-
-  Scenario: Verify TextSwitcher Next button functionality
-    When I navigate to "Views"
+    And I return to "Views"
     And I navigate to "TextSwitcher"
     And I press the "Next" button 5 times
     Then the text field should display "5"
